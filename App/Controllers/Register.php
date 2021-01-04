@@ -16,8 +16,8 @@ class Register extends Controller {
 
   public function register() {
     $user = new User();
-    $user->login = $_POST["name"];
-    $user->name = $_POST["name"];
+    $user->login = $_POST["login"];
+    $user->name = $_POST["login"];
     $user->email = $_POST["email"];
     $user->password = $_POST["password"];
     $user->avatar = "-";
@@ -36,7 +36,7 @@ class Register extends Controller {
     $validityData = 
     [ 
       //0 => validity (Bootstrap class), 1 => errorMessage, 2 => input value
-      "name" => ["", "", ""],
+      "login" => ["", "", ""],
       "email" => ["", "", ""],
       "password" => ["", "", ""],
       "passwordConfirm" => ["", "", ""],
@@ -44,24 +44,24 @@ class Register extends Controller {
 
     if ($user->login === "" || $user->name === "") {
       $this->validity = false;
-      $validityData["name"] = ["is-invalid", "Некорректное имя пользователя", ""];
+      $validityData["login"] = ["is-invalid", "Некорректное имя пользователя", ""];
     } else {
-      $validityData["name"] = ["is-valid", "", $user->login];
+      $validityData["login"] = ["is-valid", "", $user->login];
     }
 
-    if (preg_match('/[^A-Za-z0-9]/', $user->login) && $validityData["name"][0] === "is-valid") {
+    if (preg_match('/[^A-Za-z0-9]/', $user->login) && $validityData["login"][0] === "is-valid") {
       $this->validity = false;
-      $validityData["name"] = ["is-invalid", "Имя пользователя должно содержать только символы латинского алфавита и цифры", $user->login];
+      $validityData["login"] = ["is-invalid", "Имя пользователя должно содержать только символы латинского алфавита и цифры", $user->login];
     }
 
     //Check if user with given login already exists
-    if ($validityData["name"][0] === "is-valid") {
+    if ($validityData["login"][0] === "is-valid") {
       $db = new Db();
       $sql = "SELECT * FROM users WHERE login=:login";
       $userFromDB = $db->query($sql, [":login" => $user->login], "App\Models\User");
       if (!empty($userFromDB)) {
         $this->validity = false;
-        $validityData["name"] = ["is-invalid", "Такое имя пользователя уже существует", "$user->login"];
+        $validityData["login"] = ["is-invalid", "Такое имя пользователя уже существует", "$user->login"];
       }
     }
 

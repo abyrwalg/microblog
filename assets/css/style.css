@@ -1,17 +1,72 @@
+.main-nav .main-nav-avatar {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: 40px;
+}
+
+.main-nav .navbar-collapse.show .dropdown-menu.show {
+  margin-top: 15px;
+}
+
+#postTextarea {
+  resize: none;
+}
+
+.full-post-container h2 {
+  padding-top: 4px;
+}
+
+.full-post-container .arrow {
+  color: blue;
+  font-size: 3rem;
+  margin-right: 25px;
+}
+
+.full-post-container .back-to-posting {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.full-post-container .full-post .image-preview {
+  height: 1000px;
+}
+
 .post {
   cursor: pointer;
 }
 
-.post:hover {
+.post:hover .card {
   background-color: #f8f9fa;
-}
-
-.post img {
-  width: 25%;
 }
 
 .post .username:hover {
   text-decoration: underline;
+}
+
+.post .card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.post .post-avatar {
+  height: 40px;
+  margin-right: 5px;
+}
+
+.post .post-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .post .image-preview {
@@ -21,5 +76,23 @@
   background-size: cover;
   background-position: center;
   border-radius: 5px;
+}
+
+@media (min-width: 100px) and (max-width: 767.98px) {
+  #postTextarea {
+    height: 175px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  #postTextarea {
+    height: 125px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  #postTextarea {
+    height: 100px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

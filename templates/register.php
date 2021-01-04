@@ -2,7 +2,7 @@
 
 $validity = $this->validity; 
 
-$nameClass = $validity["name"][0];
+$nameClass = $validity["login"][0];
 $emailClass = $validity["email"][0];
 $passwordClass = $validity["password"][0];
 $passwordConfirmClass = $validity["passwordConfirm"][0];
@@ -16,8 +16,8 @@ $passwordConfirmClass = $validity["passwordConfirm"][0];
     <form class="col-lg-6 border p-3 mt-5 form-to-handle" action="register.php" method="post" novalidate>
       <div class="mb-3 input-div">
         <label for="inputName" class="form-label">Имя</label>
-        <input type="text" class="form-control <?php echo $nameClass ?>" id="inputName" name="name" value="<?php echo $validity["name"][2] ?>">
-        <div class="invalid-feedback feedback"><?php echo $validity["name"][1] ?></div>
+        <input type="text" class="form-control <?php echo $nameClass ?>" id="inputName" name="login" value="<?php echo $validity["login"][2] ?>">
+        <div class="invalid-feedback feedback"><?php echo $validity["login"][1] ?></div>
       </div>
       <div class="mb-3 input-div">
         <label for="exampleInputEmail1" class="form-label">Email</label>

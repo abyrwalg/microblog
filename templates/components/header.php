@@ -1,3 +1,28 @@
+<?php
+  session_start();
+  $page = basename($_SERVER['PHP_SELF']);
+
+  $loginActiveClass = $page == "login.php" ? "active disabled" : "";
+  $registerActiveClass = $page == "register.php" ? "active disabled" : "";
+
+  $userMenu;
+  if (isset($_SESSION["login"])) {
+    $userMenu = ' <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle avatar-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/images/icons/default-avatar.png" class="main-nav-avatar">
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#" id="logout-button">Выйти</a></li>
+      </ul>
+    </li>';
+  } else {
+    $userMenu = "";
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -9,7 +34,7 @@
   <title>Микроблог</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light d-flex align-items-center mb-2">
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-flex align-items-center mb-2 main-nav">
   <div class="container">
     <a class="navbar-brand" href="/microblog" ><img src="assets/images/icons/logo.png" alt="logo"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,26 +43,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="login.php">Войти</a>
+          <a class="nav-link <?php echo $loginActiveClass; ?>" aria-current="page" href="login.php">Войти</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="register.php">Зарегистрироваться</a>
+          <a class="nav-link <?php echo $registerActiveClass; ?>" href="register.php">Зарегистрироваться</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
+        <?php echo $userMenu; ?>
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Найти</button>
       </form>
     </div>
   </div>

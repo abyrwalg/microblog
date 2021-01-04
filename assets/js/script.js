@@ -20,10 +20,10 @@ function validateForm(form) {
 
     const allowedSymbols = /^[a-zA-Z0-9]+$/;
 
-    if (input.name === "name" && !allowedSymbols.test(input.value)) {
+    if (input.name === "login" && !allowedSymbols.test(input.value)) {
       valid = false;
       errorMessage =
-        "Имя пользователя должно содержать только символы латинского алфавита и цифры";
+        "Имя пользователя может содержать только символы латинского алфавита и цифры";
     }
 
     if (input.type === "email" && !looksLikeMail(input.value.trim())) {
@@ -69,8 +69,29 @@ function formSubmitHandler(event) {
   }
 }
 
+function logOut() {
+  const formData = new FormData();
+  formData.append("logout", "true");
+  fetch("http://localhost/microblog/login.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      window.location = "/microblog";
+    });
+}
+
 const form = document.querySelector(".form-to-handle");
+const logOutButton = document.querySelector("#logout-button");
 
 if (form) {
   form.addEventListener("submit", formSubmitHandler);
+}
+
+if (logOutButton) {
+  logOutButton.addEventListener("click", logOut);
 }

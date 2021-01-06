@@ -20,7 +20,8 @@ class Register extends Controller {
     $user->name = $_POST["login"];
     $user->email = $_POST["email"];
     $user->password = $_POST["password"];
-    $user->avatar = "-";
+    $user->avatar = "assets/images/icons/default-avatar.png";
+    $user->about = "";
     $this->validateUser($user);
     if ($this->validity) {
       $user->password = password_hash($user->password, PASSWORD_DEFAULT);

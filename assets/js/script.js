@@ -85,6 +85,30 @@ function logOut() {
     });
 }
 
+function uploadAvatar() {
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = "image/png,image/gif,image/jpeg";
+
+  input.onchange = (event) => {
+    const file = event.target.files[0];
+    if (isFileImage(file)) {
+      const formData = new FormData();
+      formData.append("avatar", file);
+      fetch("profile.php", { method: "POST", body: formData }).then(() => {
+        location.reload();
+      });
+    }
+  };
+
+  function isFileImage(file) {
+    const acceptedImageTypes = ["image/gif", "image/jpeg", "image/png"];
+    return file && acceptedImageTypes.includes(file["type"]);
+  }
+
+  input.click();
+}
+
 const form = document.querySelector(".form-to-handle");
 const logOutButton = document.querySelector("#logout-button");
 

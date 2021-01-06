@@ -16,6 +16,7 @@ class Login extends Controller {
     $user = User::login($_POST["login"], $_POST["password"]);
     $_SESSION["login"] = $user->login;
     $_SESSION["id"] = $user->id;
+    $_SESSION["avatar"] = $user->avatar;
     if (isset($user)) {
       header("Location: /microblog");
     } else {

@@ -12,6 +12,7 @@ class User extends Model {
   public $email;
   public $password;
   public $avatar;
+  public $about;
 
   public static function login($login, $password) {
     $sql = "SELECT * FROM users WHERE login=:login";
@@ -20,7 +21,6 @@ class User extends Model {
     if (password_verify($password, $user->password)) {
       return $user;
     }
-    
   }
 
 }

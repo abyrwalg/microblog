@@ -36,6 +36,24 @@ abstract class Model {
     }
 
     $sql = "INSERT INTO " . static::TABLE . " (". implode(",", $columns) .") VALUES (" . implode(",", array_keys($data)) . ")";
+    //Check if object already exists in database and switch to UPDATE statement if true
+    if ($this->id) {
+      $data[":id"] = $this->id;
+      $paramsString = "";
+      $i = 0;
+      $len = count($columns);
+      foreach ($columns as $column) {
+        if ($i === $len - 1) {
+          $paramsString .= $column . "=:" . $column;
+        } else {
+          $paramsString .= $column . "=:" . $column . ", "; 
+        }
+        $i++;
+      }
+      $sql = "UPDATE " . static::TABLE . " SET " . $paramsString . " WHERE id=:id";
+      var_dump($data);
+    }
+    
     $db = new Db();
     $db->execute($sql, $data);
 

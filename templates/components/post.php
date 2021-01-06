@@ -1,5 +1,4 @@
 <?php
-use App\Models\User;
 
 if (isset($this->post)) {
   $post = $this->post;
@@ -8,10 +7,10 @@ if (isset($this->post)) {
 
 <div class="card mb-3">
   <div class="card-header">
-    <img src="assets/images/icons/default-avatar.png" alt="User's avatar" class="post-avatar">
+    <div style="background-image: url(<?php echo $post->user->avatar; ?>);" alt="User's avatar" class="post-avatar"></div>
     <p>
-      <b class="username"><?php echo User::findById($post->author)->name; ?></b> 
-      <span class="text-muted">@<?php echo User::findById($post->author)->login; ?> - <?php echo date("d.m.Y H:i", strtotime($post->date)); ?></span>
+      <b class="username"><?php echo $post->user->name; ?></b> 
+      <span class="text-muted">@<?php echo $post->user->login; ?> - <?php echo date("d.m.Y H:i", strtotime($post->date)); ?></span>
     </p>
   </div>
   <div class="card-body">

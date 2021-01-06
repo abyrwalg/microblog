@@ -10,6 +10,7 @@ use App\Models\User;
 class Post extends Controller {
   public function display() { 
     $this->view->post = \App\Models\Post::findById($_GET["id"]);
+    $this->view->post->user = User::findById($this->view->post->author);
     echo $this->view->render(__DIR__ . "/../../templates/post.php");
   }
 

@@ -10,6 +10,11 @@ function looksLikeMail(str) {
   );
 }
 
+function isFileImage(file) {
+  const acceptedImageTypes = ["image/gif", "image/jpeg", "image/png"];
+  return file && acceptedImageTypes.includes(file["type"]);
+}
+
 function validateForm(form) {
   let formValidity = true;
   const inputGroup = form.querySelectorAll("div.input-div");
@@ -104,11 +109,6 @@ function uploadAvatar() {
       });
     }
   };
-
-  function isFileImage(file) {
-    const acceptedImageTypes = ["image/gif", "image/jpeg", "image/png"];
-    return file && acceptedImageTypes.includes(file["type"]);
-  }
 
   input.click();
 }

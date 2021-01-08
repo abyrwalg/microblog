@@ -8,5 +8,14 @@ include __DIR__ . "/components/header.php";
        include __DIR__ . "/components/postForm.php";
     }?>
     <?php include __DIR__ . "/components/postsFeed.php" ?>
+    <script src="assets/js/imagesUploader.js"></script>
+    <script>
+      const addImageButton = document.querySelector(".add-image-button");
+      const imagesContainer = document.querySelector(".images-container");
+      let imagesUploader;
+      if (addImageButton) {
+        imagesUploader = new ImagesUploader(addImageButton, imagesContainer);
+      }
+    </script>
   </main>
 <?php include __DIR__ . "/components/footer.php" ?>

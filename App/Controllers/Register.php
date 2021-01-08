@@ -16,8 +16,8 @@ class Register extends Controller {
 
   public function register() {
     $user = new User();
-    $user->login = $_POST["login"];
-    $user->name = $_POST["login"];
+    $user->login = trim($_POST["login"]);
+    $user->name = trim($_POST["login"]);
     $user->email = $_POST["email"];
     $user->password = $_POST["password"];
     $user->avatar = "assets/images/icons/default-avatar.png";
@@ -45,14 +45,17 @@ class Register extends Controller {
 
     if ($user->login === "" || $user->name === "") {
       $this->validity = false;
-      $validityData["login"] = ["is-invalid", "Некорректное имя пользователя", ""];
+      $validityData["login"] = ["is-invalid", "Некорректный логин", ""];
+    } elseif (mb_strlen($user->login) > 36) {
+      $this->validity = false;
+      $validityData["login"] = ["is-invalid", "Длина логина не должна превышать 36 символов", ""];
     } else {
       $validityData["login"] = ["is-valid", "", $user->login];
     }
 
     if (preg_match('/[^A-Za-z0-9]/', $user->login) && $validityData["login"][0] === "is-valid") {
       $this->validity = false;
-      $validityData["login"] = ["is-invalid", "Имя пользователя должно содержать только символы латинского алфавита и цифры", $user->login];
+      $validityData["login"] = ["is-invalid", "Логин должен содержать только символы латинского алфавита и цифры", $user->login];
     }
 
     //Check if user with given login already exists
@@ -84,7 +87,7 @@ class Register extends Controller {
       }
     }
 
-    if (strlen($user->password) < 8) {
+    if (mb_strlen($user->password) < 8) {
       $this->validity = false;
       $validityData["password"] = ["is-invalid", "Длина пароля меньше 8 символов", ""];
     } else {

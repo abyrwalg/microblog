@@ -24,7 +24,6 @@ abstract class Model {
 
   public function save() {
     $fields = get_object_vars($this);
-    var_dump($fields);
     $columns = [];
     $data = [];
     foreach ($fields as $name => $value) {
@@ -51,7 +50,6 @@ abstract class Model {
         $i++;
       }
       $sql = "UPDATE " . static::TABLE . " SET " . $paramsString . " WHERE id=:id";
-      var_dump($data);
     }
     
     $db = new Db();

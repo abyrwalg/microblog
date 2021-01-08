@@ -9,9 +9,19 @@ if (!isset($_SESSION["login"])) {
   die();
 } 
 
+
+
 $ctrl = new App\Controllers\Profile();
+
+if (isset($_POST["name"]) || isset($_POST["about"])) {
+  $ctrl->updateInfo();
+  die();
+}
+
 if (isset($_FILES["avatar"]) && $_FILES["avatar"]["error"] == 0) {
   $ctrl->uploadAvatar();
-} else {
-  $ctrl();
-}
+  die();
+} 
+
+$ctrl();
+

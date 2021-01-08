@@ -16,14 +16,18 @@ function validateForm(form) {
   inputGroup.forEach((inputDiv) => {
     let valid = true;
     let errorMessage = "";
-    const input = inputDiv.querySelector("input");
+    const input = inputDiv.querySelector(".form-control");
 
     const allowedSymbols = /^[a-zA-Z0-9]+$/;
 
-    if (input.name === "login" && !allowedSymbols.test(input.value)) {
+    if (
+      input.name === "login" &&
+      !allowedSymbols.test(input.value) &&
+      input.value.trim().length > 0
+    ) {
       valid = false;
       errorMessage =
-        "Имя пользователя может содержать только символы латинского алфавита и цифры";
+        "Логин может содержать только символы латинского алфавита и цифры";
     }
 
     if (input.type === "email" && !looksLikeMail(input.value.trim())) {
@@ -44,7 +48,7 @@ function validateForm(form) {
       }
     }
 
-    if (input.value.trim() === "") {
+    if (input.value.trim() === "" && input.classList.contains("required")) {
       valid = false;
       errorMessage = "Заполните это поле";
     }

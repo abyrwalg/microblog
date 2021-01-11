@@ -24,7 +24,16 @@ class Post extends Controller {
     $post->author = $_SESSION["id"];
     $post->date = date("Y-m-d H:i:s");
     $post->content = $_POST["post"];
-    $post->save();
-    header("Location: /microblog");
+
+    foreach ($_FILES as $file) {
+      if (getimagesize($file["tmp_name"])) {
+        $filePath = __DIR__ . "/../../assets/images/tmp/" . rand(0, 2048) . $file["name"];
+        $images[] = $filePath;
+        move_uploaded_file($file["tmp_name"], $filePath);
+      }
+    }
+
+    $post->publish($images);
+    echo json_encode(["message" => "success"]);
   }
 }

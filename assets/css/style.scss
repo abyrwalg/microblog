@@ -1,3 +1,6 @@
+body {
+  font-size: 1.1rem;
+}
 .main-nav {
   .main-nav-avatar {
     position: absolute;
@@ -69,7 +72,7 @@
         background-image: url(../../assets/images/icons/x-circle.svg);
         background-size: contain;
         &:hover {
-          opacity: 0.5;
+          background-image: url(../../assets/images/icons/x-circle-gray.svg);
         }
       }
     }
@@ -93,8 +96,9 @@
 
 .post {
   cursor: pointer;
-  &:hover .card {
-    background-color: #f8f9fa;
+  &:hover .card,
+  &:hover .card-header {
+    background-color: #f8f9fa !important;
   }
   .username:hover {
     text-decoration: underline;
@@ -123,21 +127,25 @@
     color: inherit;
   }
 
-  .image-preview {
-    width: 100%;
-    height: 400px;
-    background-image: url(https://source.unsplash.com/random);
-    background-size: cover;
-    background-position: center;
-    border-radius: 5px;
+  .images {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 15px;
+    overflow: hidden;
+    .image-container {
+      flex-grow: 1;
+      height: 300px;
+      background-size: cover;
+      background-position: center;
+    }
   }
 }
 
 .profile-page {
   .avatar-container {
     .overlay {
-      width: 125px;
-      height: 125px;
+      width: 150px;
+      height: 150px;
       position: relative;
       border-radius: 50%;
       background-color: rgba(0, 0, 0, 0.4);
@@ -161,8 +169,8 @@
       position: absolute;
       z-index: -2;
       top: 0;
-      width: 125px;
-      height: 125px;
+      width: 150px;
+      height: 150px;
       background-size: cover;
       background-position: center;
       border-radius: 50%;
@@ -177,6 +185,16 @@
   .post-form {
     .images-container {
       .thumbnail {
+        flex-grow: auto;
+        width: 50%;
+        height: 200px;
+      }
+    }
+  }
+
+  .post {
+    .images {
+      .image-container {
         flex-grow: auto;
         width: 50%;
         height: 200px;
@@ -198,6 +216,15 @@
       }
     }
   }
+  .post {
+    .images {
+      .image-container {
+        flex-grow: auto;
+        width: 50%;
+        height: 250px;
+      }
+    }
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -208,6 +235,15 @@
   .post-form {
     .images-container {
       .thumbnail {
+        flex-grow: auto;
+        width: 50%;
+        height: 250px;
+      }
+    }
+  }
+  .post {
+    .images {
+      .image-container {
         flex-grow: auto;
         width: 50%;
         height: 250px;

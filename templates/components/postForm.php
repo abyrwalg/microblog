@@ -1,4 +1,4 @@
-<form class="mb-4 post-form" method="post" action="post.php">
+<form class="mb-4 post-form">
   <div class="mb-3">
     <label for="postTextarea" class="form-label">Что происходит?</label>
     <textarea class="form-control" id="postTextarea" maxlength="280" name="post"></textarea>

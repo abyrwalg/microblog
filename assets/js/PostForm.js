@@ -1,9 +1,15 @@
-class ImagesUploader {
-  constructor(button, previewContainer) {
-    this.button = button;
+class PostForm {
+  constructor(formPost, addImageButton, previewContainer) {
+    this.button = addImageButton;
     this.button.addEventListener("click", this.showFilesSelector);
     this.images = [];
     this.previewContainer = previewContainer;
+    this.formData = new FormData();
+
+    this.formPost = formPost;
+    this.formPost
+      .querySelector("button[type='submit']")
+      .addEventListener("click", this.post);
   }
 
   showFilesSelector = () => {
@@ -33,8 +39,6 @@ class ImagesUploader {
       alert("Пост не может содержать больше четырех изображений");
       return;
     }
-
-    console.log(this.images);
 
     this.images.forEach((file) => {
       this.previewContainer.innerHTML = "";
@@ -69,6 +73,27 @@ class ImagesUploader {
     const index = this.images.indexOf(file);
     if (index > -1) {
       this.images.splice(index, 1);
+    }
+  };
+
+  post = async (event) => {
+    event.preventDefault();
+    for (let i = 0; i < this.images.length; i++) {
+      this.formData.append(`image-${i + 1}`, this.images[i]);
+    }
+    const postText = this.formPost.querySelector("textarea").value;
+    this.formData.append("post", postText);
+
+    try {
+      const response = await fetch("post.php", {
+        method: "post",
+        body: this.formData,
+      });
+      const result = await response.json();
+      console.log(result);
+      location.reload();
+    } catch (error) {
+      console.log(error);
     }
   };
 }

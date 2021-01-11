@@ -1,3 +1,7 @@
+body {
+  font-size: 1.1rem;
+}
+
 .main-nav .main-nav-avatar {
   position: absolute;
   top: 0;
@@ -75,7 +79,7 @@
 }
 
 .post-form .images-container .thumbnail .x-button:hover {
-  opacity: 0.5;
+  background-image: url(../../assets/images/icons/x-circle-gray.svg);
 }
 
 .post-form .buttons-container {
@@ -104,8 +108,9 @@
   cursor: pointer;
 }
 
-.post:hover .card {
-  background-color: #f8f9fa;
+.post:hover .card,
+.post:hover .card-header {
+  background-color: #f8f9fa !important;
 }
 
 .post .username:hover {
@@ -140,18 +145,28 @@
   color: inherit;
 }
 
-.post .image-preview {
-  width: 100%;
-  height: 400px;
-  background-image: url(https://source.unsplash.com/random);
+.post .images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.post .images .image-container {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 300px;
   background-size: cover;
   background-position: center;
-  border-radius: 5px;
 }
 
 .profile-page .avatar-container .overlay {
-  width: 125px;
-  height: 125px;
+  width: 150px;
+  height: 150px;
   position: relative;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.4);
@@ -175,8 +190,8 @@
   position: absolute;
   z-index: -2;
   top: 0;
-  width: 125px;
-  height: 125px;
+  width: 150px;
+  height: 150px;
   background-size: cover;
   background-position: center;
   border-radius: 50%;
@@ -187,6 +202,13 @@
     height: 175px;
   }
   .post-form .images-container .thumbnail {
+    -webkit-box-flex: auto;
+        -ms-flex-positive: auto;
+            flex-grow: auto;
+    width: 50%;
+    height: 200px;
+  }
+  .post .images .image-container {
     -webkit-box-flex: auto;
         -ms-flex-positive: auto;
             flex-grow: auto;
@@ -206,6 +228,13 @@
     width: 50%;
     height: 250px;
   }
+  .post .images .image-container {
+    -webkit-box-flex: auto;
+        -ms-flex-positive: auto;
+            flex-grow: auto;
+    width: 50%;
+    height: 250px;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -213,6 +242,13 @@
     height: 100px;
   }
   .post-form .images-container .thumbnail {
+    -webkit-box-flex: auto;
+        -ms-flex-positive: auto;
+            flex-grow: auto;
+    width: 50%;
+    height: 250px;
+  }
+  .post .images .image-container {
     -webkit-box-flex: auto;
         -ms-flex-positive: auto;
             flex-grow: auto;

@@ -8,13 +8,14 @@ include __DIR__ . "/components/header.php";
        include __DIR__ . "/components/postForm.php";
     }?>
     <?php include __DIR__ . "/components/postsFeed.php" ?>
-    <script src="assets/js/imagesUploader.js"></script>
+    <script src="assets/js/PostForm.js"></script>
     <script>
       const addImageButton = document.querySelector(".add-image-button");
       const imagesContainer = document.querySelector(".images-container");
-      let imagesUploader;
+      const formPost = document.querySelector(".post-form");
+      let postForm;
       if (addImageButton) {
-        imagesUploader = new ImagesUploader(addImageButton, imagesContainer);
+        postForm = new PostForm(formPost, addImageButton, imagesContainer);
       }
     </script>
   </main>

@@ -16,7 +16,7 @@ if (isset($this->post)) {
     <div style="background-image: url(<?php echo $post->user->avatar; ?>);" alt="User's avatar" class="post-avatar"></div>
     <p class="post-info">
       <b class="username"><?php echo $post->user->name; ?></b> 
-      <span class="text-muted">@<?php echo $post->user->login; ?> · <?php echo formatDate($date); ?></span>
+      <span class="text-muted"><span class="login">@<?php echo $post->user->login; ?></span> · <?php echo formatDate($date); ?></span>
     </p>
   </div>
   <div class="card-body">

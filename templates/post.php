@@ -5,4 +5,8 @@
     <?php include __DIR__. "/components/post.php" ?>
   </div>
 </div>
+<script src="assets/js/Gallery.js"></script>
+<script>
+  const gallery = new Gallery(document.querySelector(".full-post"));
+</script>
 <?php include __DIR__ . "/components/footer.php" ?>

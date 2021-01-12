@@ -43,6 +43,12 @@ body {
   color: inherit;
 }
 
+.full-post-container .full-post:hover .card,
+.full-post-container .full-post:hover .card-header {
+  background-color: inherit !important;
+  cursor: auto !important;
+}
+
 .full-post-container .full-post .image-preview {
   height: 1000px;
 }
@@ -115,6 +121,11 @@ body {
 
 .post .username:hover {
   text-decoration: underline;
+  cursor: pointer;
+}
+
+.post .login {
+  cursor: pointer;
 }
 
 .post .card-header {
@@ -162,6 +173,7 @@ body {
   height: 300px;
   background-size: cover;
   background-position: center;
+  cursor: pointer;
 }
 
 .profile-page .avatar-container .overlay {
@@ -195,6 +207,83 @@ body {
   background-size: cover;
   background-position: center;
   border-radius: 50%;
+}
+
+.gallery-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+
+.gallery-container img {
+  display: block;
+  position: relative;
+  -webkit-transition: margin 0.2s ease !important;
+  transition: margin 0.2s ease !important;
+  z-index: -2;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+.gallery-container img.next-image {
+  margin-left: 100vw;
+}
+
+.gallery-container img.previous-image {
+  margin-right: 100vw;
+}
+
+.gallery-container .ui-element {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  background-size: contain;
+  background-position: center;
+  border-radius: 50%;
+}
+
+.gallery-container .ui-element.close {
+  top: 10px;
+  left: 10px;
+  background-image: url(../../assets/images/icons/x-circle.svg);
+}
+
+.gallery-container .ui-element.close:hover {
+  background-image: url(../../assets/images/icons/x-circle-gray.svg);
+}
+
+.gallery-container .previous.switch-image {
+  left: 10px;
+  background-image: url(../../assets/images/icons/arrow-left-circle-fill.svg);
+}
+
+.gallery-container .previous.switch-image:hover {
+  background-image: url(../../assets/images/icons/arrow-left-circle-fill-gray.svg);
+}
+
+.gallery-container .next.switch-image {
+  right: 10px;
+  background-image: url(../../assets/images/icons/arrow-right-circle-fill.svg);
+}
+
+.gallery-container .next.switch-image:hover {
+  background-image: url(../../assets/images/icons/arrow-right-circle-fill-gray.svg);
 }
 
 @media (min-width: 100px) and (max-width: 767.98px) {
